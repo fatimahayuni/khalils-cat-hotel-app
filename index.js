@@ -48,37 +48,40 @@ function showAllReservationsInterface() {
     }
     console.log("==== Tasks ====");
     for (let reservation of reservations) {
-        console.log(`ID: ${reservation.id}, roomType: ${reservation.roomType}, Check-in Date: ${reservation.checkInDate}, Check-out date: ${reservation.checkOutDate}`);
+        console.log(`ID: ${reservation.id}, Pet name: ${reservation.petName},  Room type: ${reservation.roomType}, Check-in Date: ${reservation.checkInDate}, Check-out date: ${reservation.checkOutDate}`);
     }
 }
 
 function addNewReservationInterface(){
+    let petName = prompt("Enter your pet's name: ")
     let roomType = prompt("Enter room type that you want (A-C): ");
     let checkInDate = prompt("Enter your check-in date: ");
     let checkOutDate = prompt("Enter your check-out date: ")
-    addReservationModeling(reservations, roomType, checkInDate, checkOutDate)
+    addReservation(reservations, petName, roomType, checkInDate, checkOutDate)
     console.log("🌟🌟 New reservation added successfully!🌟🌟");
 }
 
 function updateReservationInterface() {
    let id = parseInt(prompt("Enter the reservation ID: "));
+   let updatedPetName = prompt("Enter new pet name: ")
    let updatedRoomType = prompt("Enter new room type: ");
    let updatedCheckInDate = prompt("Enter new check-in date: ");
    let updatedCheckOutDate = prompt("Enter new check-out date: ");
-   updateReservationModeling(reservations, id, updatedRoomType, updatedCheckInDate, updatedCheckOutDate)
+   updateReservation(reservations, id, updatedPetName, updatedRoomType, updatedCheckInDate, updatedCheckOutDate)
    console.log("📝 Reservation amended!");
 }
 
 function deleteReservationInterface() {
     id = prompt("Enter the reservation ID to delete: ");
-    deleteReservationModeling(reservations, id);
+    deleteReservation(reservations, id);
     return id
 }
 
-// 3 functions for data modeling
-function addReservationModeling(reservations, roomType, checkInDate, checkOutDate) {
+// 3 FUNCTIONS FOR DATA MODELING
+function addReservation(reservations, petName, roomType, checkInDate, checkOutDate) {
     let newReservation = {
         id: Math.floor(Math.random() * 1000 + 1),
+        petName: petName,
         roomType: roomType,
         checkInDate: checkInDate,
         checkOutDate: checkOutDate
@@ -86,7 +89,7 @@ function addReservationModeling(reservations, roomType, checkInDate, checkOutDat
     reservations.push(newReservation);
 }
 
-function updateReservationModeling(reservations, id, updatedRoomType, updatedCheckInDate, updatedCheckOutDate) {
+function updateReservation(reservations, id, updatedPetName, updatedRoomType, updatedCheckInDate, updatedCheckOutDate) {
     let reservation = null;
     for (let r of reservations) {
         if (r.id == id) {
@@ -94,6 +97,7 @@ function updateReservationModeling(reservations, id, updatedRoomType, updatedChe
         }
     }
     if (reservation) {
+        reservation.petName = updatedPetName;
         reservation.roomType = updatedRoomType;
         reservation.checkInDate = updatedCheckInDate;
         reservation.checkOutDate = updatedCheckOutDate;
@@ -102,7 +106,7 @@ function updateReservationModeling(reservations, id, updatedRoomType, updatedChe
     }
 }
 
-function deleteReservationModeling(reservations, id) {
+function deleteReservation(reservations, id) {
     let indexToDelete = null;
     for (let i = 0; i < reservations.length; i++) {
         if (reservations[i].id == id) {

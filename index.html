@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="index.css">
+
+    <!--Bootstrap 5 CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+    <title>Cat Hotel App</title>
+</head>
+<body>
+    <!--Form for server-side rendering-->
+    <form id="reservationForm" class="container booking-form-div mt-5 p-5">
+        <label>Pet name:</label>
+        <input type="text" id="petName" required><br><br>
+
+        <!--Radio selection-->
+        <label>Room type:</label>
+        
+          <label for="roomA">Room A</label>
+            <input type="radio" id="roomA" name="roomType" class="roomType" value="Room A">
+
+          
+          <label for="roomB">Room B</label>
+            <input type="radio" id="roomB" name="roomType" class="roomType" value="Room B">
+
+          
+          <label for="roomC">Room C</label>
+            <input type="radio" id="roomC" name="roomType" class="roomType" value="Room C"><br><br>
+
+        <!--Calendar selection-->
+        <label for="checkin-date">Check-in Date:</label>
+        <input type="date" id="checkInDate" name="checkin-date"><br><br>
+
+        <label for="checkout-date">Check-out Date:</label>
+        <input type="date" id="checkOutDate" name="checkout-date"><br><br>
+
+        <!--Button-->
+        <button id="bookNowBtn" type="submit">Book Now</button><br><br>
+      </form>
+
+
+    <!--READ / Show all reservations-->
+    <!--Do list rendering here. All reservations will be appended here-->
+    <div id="showReservations" class="container show-reservation-div mt-4 p-5">
+    <h1 class="text-center">Show All Reservations</h1>
+    <ol id="reservationList" class="list-group">
+         <!-- Todo items will be appended here -->
+    </ol>
+    </div>
+
+    <!-- Placeholder for Bootstrap Accordion -->
+    <div id="accordionContainer">
+
+    </div>
+
+
+    <!--todo: check axios script-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.js.map">
+
+    <!--JS scripts-->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
+
+<!--todo create a button in js and add eventlistener. In that anon function, we will render the new reservation  to the outputDiv element.-->
