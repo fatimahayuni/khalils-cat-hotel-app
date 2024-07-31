@@ -14,53 +14,61 @@
 </head>
 <body>
     <!--Form for server-side rendering-->
-    <form id="reservationForm" class="container booking-form-div mt-5 p-5">
-        <label>Pet name:</label>
-        <input type="text" id="petName" required><br><br>
+    <div class="container justify-content-center">
+        <div>
+            <form id="reservationForm" class="container booking-form-div mt-5 p-5">
+                <label>Pet name:</label>
+                <input type="text" id="petName" required><br><br>
 
-        <!--Radio selection-->
-        <label>Room type:</label>
-        
-          <label for="roomA">Room A</label>
-            <input type="radio" id="roomA" name="roomType" class="roomType" value="Room A">
+                <!--Radio selection-->
+                <label>Room type:</label>
+                
+                  <label for="roomA">Room A</label>
+                    <input type="radio" id="roomA" name="roomType" class="roomType" value="Room A">
 
-          
-          <label for="roomB">Room B</label>
-            <input type="radio" id="roomB" name="roomType" class="roomType" value="Room B">
+                  
+                  <label for="roomB">Room B</label>
+                    <input type="radio" id="roomB" name="roomType" class="roomType" value="Room B">
 
-          
-          <label for="roomC">Room C</label>
-            <input type="radio" id="roomC" name="roomType" class="roomType" value="Room C"><br><br>
+                  
+                  <label for="roomC">Room C</label>
+                    <input type="radio" id="roomC" name="roomType" class="roomType" value="Room C"><br><br>
 
-        <!--Calendar selection-->
-        <label for="checkin-date">Check-in Date:</label>
-        <input type="date" id="checkInDate" name="checkin-date"><br><br>
+                <!--Calendar selection-->
+                <label for="checkin-date">Check-in Date:</label>
+                <input type="date" id="checkInDate" name="checkin-date"><br><br>
 
-        <label for="checkout-date">Check-out Date:</label>
-        <input type="date" id="checkOutDate" name="checkout-date"><br><br>
+                <label for="checkout-date">Check-out Date:</label>
+                <input type="date" id="checkOutDate" name="checkout-date"><br><br>
 
-        <!--Button-->
-        <button id="bookNowBtn" type="submit">Book Now</button><br><br>
-      </form>
+                <!--Button-->
+                <button id="bookNowBtn" type="submit">Book Now</button><br><br>
+            </form>
+        </div>
 
 
     <!--READ / Show all reservations-->
     <!--Do list rendering here. All reservations will be appended here-->
+    
     <div id="showReservations" class="container show-reservation-div mt-4 p-5">
     <h1 class="text-center">Show All Reservations</h1>
     <ol id="reservationList" class="list-group">
          <!-- Todo items will be appended here -->
     </ol>
     </div>
+    <div class="d-flex justify-content-center align-item-center">
+    <button id="saveBtn" class="btn btn-success p-3 m-5 justify-content-center">Save</button>
+    </div>
 
+    </div>
     <!-- Placeholder for Bootstrap Accordion -->
     <div id="accordionContainer">
 
     </div>
 
 
-    <!--todo: check axios script-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.js.map">
+    <!--axios-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js" integrity="sha512-JSCFHhKDilTRRXe9ak/FJ28dcpOJxzQaCd3Xg8MyF6XFjODhy/YMCM8HW0TFDckNHWUewW+kfvhin43hKtJxAw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!--JS scripts-->
     <script src="data.js"></script>

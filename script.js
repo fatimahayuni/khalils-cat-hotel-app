@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    function main() {
-        let reservations = []; // store all the reservations
+    async function main() {
+        let reservations = await loadReservations(); // store all the reservations
 
-        // event listeners
+        // event listeners for the for
         const form = document.querySelector("#reservationForm");
         form.addEventListener('submit', function(event){
             event.preventDefault();
@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
+        
         // Using event bubbling for the Edit and Delete buttons
         const reservationList = document.querySelector("#reservationList");
         reservationList.addEventListener('click', function(event) {
@@ -37,9 +38,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 // get the taskId embedded in the button
                 const reservationId = parseInt(event.target.dataset.reservationId);
-                const reservation = reservations.find(r => r.id ===reservationId);
+                const reservation = reservations.find(r => r.id === reservationId);
 
-                // Select the edit button
+                // Select the edit button / Create the accordion when the edit button is clicked.
                 const accordionHtml = `
                 <div class="accordion" id="modifyReservation">
                         <div class="accordion-item">
@@ -100,15 +101,15 @@ document.addEventListener("DOMContentLoaded", function() {
                     const accordionElement = document.querySelector('#modifyReservation');
                     accordionElement.scrollIntoView({behavior: 'smooth' });
 
-                    // Save button functionality
-                    const saveEditButton = document.querySelector('#saveEditBtn');
-                    saveEditButton.addEventListener('click', function() {
+                    // Save changed button functionality
+                    const saveButton = document.querySelector('#saveEditBtn');
+                    saveButton.addEventListener('click', function() {
                         // Save the changes
                         reservation.petName = editPetName.value;
                         reservation.roomType = document.querySelector('input[name="editRoomType"]:checked').value;
                         reservation.checkInDate = editCheckInDate.value;
                         reservation.checkOutDate = editCheckOutDate.value;
-
+                      
                         // Re-render the reservations
                         renderReservations(reservations);
 
@@ -117,22 +118,25 @@ document.addEventListener("DOMContentLoaded", function() {
                     });
             }
 
+            // Check if the clicked element has the 'delete-btn' functionality
             if (event.target.classList.contains('delete-btn')) {
-                const reservationId = parseInt(event.target.dataset.taskId);
+                const reservationId = parseInt(event.target.dataset.reservationId);
                 const reservation = reservations.find(r => r.id === reservationId);
 
                 const toDelete = confirm("Are you sure you want to delete?");
                 if (toDelete) {
-                    deleteReservation(reservations, id);
-                    renderReservations(reservation);
+                    deleteReservation(reservations, reservation.id);
+                    renderReservations(reservations);
                 }
             }
         })
+
+        const saveButton = document.querySelector("#saveBtn");
+        saveButton.addEventListener("click", async function() {
+            saveReservations(reservations);
+        })
             
-        // add three reservations
-        addReservation(reservations, "Meowie", "Room A", "23rd August 2024", "24th August 2024");
-        addReservation(reservations, "Billy", "Room B", "23rd July 2024", "24th July 2024");
-        addReservation(reservations, "Chickaboo", "Room C", "23rd June 2024", "24th June 2024");
+    
         renderReservations(reservations);
     }
 
@@ -150,17 +154,6 @@ document.addEventListener("DOMContentLoaded", function() {
         `;
 
             reservationList.appendChild(li);
-                
-  
-            // Allow deleting
-            li.querySelector(".delete-btn").addEventListener('click', function() {
-                console.log("Button clicked");
-                const confirmation = confirm("Do you want to delete the reservation for " + reservation.petName + "?");
-                if (confirmation) {
-                    deleteReservation(reservations, reservation.id);
-                    renderReservations(reservations);
-                }
-            }); 
         }
     };
 

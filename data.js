@@ -1,3 +1,7 @@
+const BASE_JSON_BIN_URL = "https://api.jsonbin.io/v3/b";
+const BIN_ID = "66a863b0e41b4d34e41905ce";
+const MASTER_KEY = "$2a$10$hizbF/WWO7aCi8N9hdKNKuDWhS.ADUD.qn6O4zhWBRRdlOa8ls7t6"
+
 let reservations = [];
 
 // 3 FUNCTIONS FOR DATA MODELING
@@ -43,4 +47,20 @@ function deleteReservation(reservations, id) {
     } else {
         console.log("Reservation not found");
     }
+}
+
+async function loadReservations() {
+    const response = await axios.get(BASE_JSON_BIN_URL + "/" + BIN_ID + "/latest");
+    return response.data.record;
+}
+
+async function saveReservations(reservations) {
+    const response = await axios.put(`${BASE_JSON_BIN_URL}/${BIN_ID}`, reservations, {
+        headers: {
+            "Content-Type": "application/json",
+            "X-Master-Key": MASTER_KEY
+        }
+    });
+    console.log("This is response.data", response.data);
+    return response.data;
 }
