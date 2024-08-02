@@ -1,5 +1,5 @@
-document.addEventListener("DOMContentLoaded", function() {
 
+document.addEventListener("DOMContentLoaded", function() {
     async function main() {
         let reservations = await loadReservations(); // store all the reservations
 
@@ -101,14 +101,20 @@ document.addEventListener("DOMContentLoaded", function() {
                     const accordionElement = document.querySelector('#modifyReservation');
                     accordionElement.scrollIntoView({behavior: 'smooth' });
 
-                    // Save changed button functionality
+                    // 'Save changes' button functionality
                     const saveButton = document.querySelector('#saveEditBtn');
                     saveButton.addEventListener('click', function() {
+
                         // Save the changes
                         reservation.petName = editPetName.value;
                         reservation.roomType = document.querySelector('input[name="editRoomType"]:checked').value;
                         reservation.checkInDate = editCheckInDate.value;
                         reservation.checkOutDate = editCheckOutDate.value;
+
+                        Swal.fire({
+                            title: "Your reservation has been updated!",
+                            text: `Your reservation for ${reservation.petName}, ${reservation.roomType}, ${reservation.checkInDate} - ${reservation.checkOutDate} has been saved!`
+                        })
                       
                         // Re-render the reservations
                         renderReservations(reservations);
@@ -118,22 +124,43 @@ document.addEventListener("DOMContentLoaded", function() {
                     });
             }
 
-            // Check if the clicked element has the 'delete-btn' functionality
-            if (event.target.classList.contains('delete-btn')) {
-                const reservationId = parseInt(event.target.dataset.reservationId);
-                const reservation = reservations.find(r => r.id === reservationId);
+            const reservationList = document.querySelector("#reservationList");
+            reservationList.addEventListener("click", async function(event) {
+                // Check if the clicked element has the 'delete-btn' functionality. SWAL
+                if (event.target.classList.contains('delete-btn')) {
 
-                const toDelete = confirm("Are you sure you want to delete?");
-                if (toDelete) {
-                    deleteReservation(reservations, reservation.id);
-                    renderReservations(reservations);
-                }
+                    const reservationId = parseInt(event.target.dataset.reservationId);
+                    const reservation = reservations.find(r => r.id === reservationId);
+
+                    const toDelete = await Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, delete it!"
+                    });
+
+                    if (toDelete.isConfirmed) {
+                        deleteReservation(reservations, reservation.id);
+                        renderReservations(reservations);
+                        await Swal.fire({
+                            title: "Deleted!",
+                            text: "Your booking has been deleted.",
+                            icon: "success"
+                        });
+                    }
             }
+            });
+             
+          
         })
 
         const saveButton = document.querySelector("#saveBtn");
         saveButton.addEventListener("click", async function() {
             saveReservations(reservations);
+            Swal.fire("The list has been saved to the database!")
         })
             
     
@@ -147,10 +174,13 @@ document.addEventListener("DOMContentLoaded", function() {
         
         for (let reservation of reservations){
             const li = document.createElement('li');
-            li.className = 'list-group-item d-flex justify-content-between align-items-center';
-            li.innerHTML = `${reservation.petName}, ${reservation.roomType}, ${reservation.checkInDate} - ${reservation.checkOutDate}
-            <button data-reservation-id=${reservation.id} class="btn btn-warning btn-sm edit-btn">Edit</button>
-            <button data-reservation-id=${reservation.id} class="btn btn-danger btn-sm delete-btn">Delete</button>
+            li.className = 'list-group-item';
+            li.innerHTML = `
+            <div class="container-fluid row">
+            <div class="col-10">${reservation.petName}, ${reservation.roomType}, ${reservation.checkInDate} - ${reservation.checkOutDate}</div>
+            <div class="col-1"><button data-reservation-id=${reservation.id} class="btn btn-sm edit-btn"><img src="assets/edit.png" width="15px"></button></div>
+            <div class="col-1"><button data-reservation-id=${reservation.id} class="btn btn-sm delete-btn"><img src="assets/delete.png" width="15px"</button></div>
+            </div>
         `;
 
             reservationList.appendChild(li);
@@ -159,5 +189,3 @@ document.addEventListener("DOMContentLoaded", function() {
 
     main()
 });
-
-//todo make it ordered list

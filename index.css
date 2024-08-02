@@ -1,9 +1,24 @@
 .booking-form-div {
-    background-color: pink;
+    background-color: bisque;
     border-radius: 10px;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    padding: 10px;
+    width: 80%;
+    
 }
 
 .show-reservation-div {
     background-color: bisque;
     border-radius: 10px;
+    width: 80%;
+}
+
+body {
+    /* background-image: url("/assets/cat copy.jpg"); */
+    background-repeat: no-repeat;
+    background-size: auto;
+    /* background-position-x: center;  */
+    /* background-position-y: bottom */
+
 }
