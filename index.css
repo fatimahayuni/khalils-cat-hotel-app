@@ -2,7 +2,14 @@
     font-family: "Calistoga", serif;
     font-weight: 400;
     font-style: normal;
-    color: white;
+    color:  #F4DEC9;
+  }
+
+  .h2 {
+    font-family: "Calistoga", serif;
+    font-weight: 100;
+    font-style: normal;
+    color:  #7059EA;
   }
   
 .normal-text {
@@ -20,6 +27,15 @@
   width: 100%;
 }
 
+.purple-button {
+  background-color: #7059EA;
+  border-radius: 10px;
+  color: white;
+  width: 50%;
+  border: none;
+
+}
+
 .beige-div-bg {
   background-color: #F4DEC9;
   padding-top: 25px;
@@ -28,17 +44,18 @@
 .booking-form-div {
     background-color: #FEBB63;
     border-radius: 50px;
-    margin-bottom: 25px;
-    margin-top: 25px;
     padding: 10px;
-    width: 100%;
+    width: 90%;
     
 }
 
 .show-reservation-div {
     background-color:  #FEBB63;
     border-radius: 50px;
+    margin-bottom: 25px;
+    margin-top: 25px;
     width: 100%;
+    padding-bottom: 50px;
 }
 
 body {
