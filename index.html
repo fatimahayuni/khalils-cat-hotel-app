@@ -18,7 +18,7 @@
     <title>Cat Hotel App</title>
 </head>
 <body> 
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-sm orange-div navbar-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="#"><img src="assets/9063315.jpg" width="40px"></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collfapsibleNavbar">
@@ -27,7 +27,16 @@
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="admin.html">Admin</a>
+                <a class="nav-link normal-text" href="admin.html">Amenities</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link normal-text" href="admin.html">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link normal-text" href="admin.html">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link normal-text" href="admin.html">Contact</a>
               </li>
             </ul>
           </div>
@@ -36,56 +45,69 @@
     
 
     <!--FORM DIV-->
-    <div class="container">
-        <form id="reservationForm" class="container form-check booking-form-div mt-3 p-3">
-            <h1 class="text-center calistoga">Reservation Form</h1><br>
-            <div class="d-flex justify-content-center">
-                <label class="form-label normal-text">Pet name:</label>
+    <div class="container beige-div-bg">
+    <div class="row py-2  d-flex justify-content-center p-3">
+        <!--Purple div-->
+        <div class="col-12 purple-div-bg p-4"></div>
+        <!--Headline div-->
+        <div class="col-12 col-md-8 calistoga">
+            <div class="d-sm-flex justify-content-center">
+                <h1><center>Book a Room for Your Paw Baby</center</h1>
             </div>
-            <div class="d-flex justify-content-center">
-                <input type="text" id="petName" class="form-label" required>
-            </div><br>
+            <div class="d-sm-flex justify-content-center"> <img src="assets/cat copy.jpg" class="img-fluid img"></div>
+        </div>
+     
+        <div class="container col-12 col-md-4">
+            <form id="reservationForm" class="container form-check booking-form-div mt-3 p-3">
+                <h1 class="text-center calistoga">Reservation Form</h1><br>
+                <div class="d-flex justify-content-center">
+                    <label class="form-label normal-text d-sm-flex justify-content-center">Pet name:</label>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <input type="text" id="petName" class="form-label" required>
+                </div><br>
 
-            <!--todo Radio selection-->
-            <div>
+                <!--todo Radio selection-->
+                <div>
 
-            <div class="d-flex justify-content-center"><label class="form-label normal-text">Room type:</label></div>
-            
-            <div class="d-flex justify-content-center">
-            <div class="mx-2">
-              <label for="roomA">Room A</label>
-                <input type="radio" id="roomA" name="roomType" class="roomType" value="Room A">
-            </div><br>
+                <div class="d-flex justify-content-center"><label class="form-label normal-text">Room type:</label></div>
+                
+                <div class="d-flex justify-content-center">
+                <div class="mx-2">
+                  <label for="roomA">Room A</label>
+                    <input type="radio" id="roomA" name="roomType" class="roomType" value="Room A">
+                </div><br>
 
-            <div class="mx-2">
-              <label for="roomB">Room B</label>
-                <input type="radio" id="roomB" name="roomType" class="roomType" value="Room B">
-            </div><br>
+                <div class="mx-2">
+                  <label for="roomB">Room B</label>
+                    <input type="radio" id="roomB" name="roomType" class="roomType" value="Room B">
+                </div><br>
 
-            <div class="mx-2">
-              <label for="roomC">Room C</label>
-                <input type="radio" id="roomC" name="roomType" class="roomType" value="Room C">
+                <div class="mx-2">
+                  <label for="roomC">Room C</label>
+                    <input type="radio" id="roomC" name="roomType" class="roomType" value="Room C">
+                </div>
+                </div>
+                <br>
+
+                <!--Calendar selection-->
+                <div class="d-flex justify-content-center normal-text"><label class="form-label" for="checkin-date">Check-in Date:</label></div>
+                <div class="d-flex justify-content-center"><input type="date" id="checkInDate" name="checkin-date"></div><br>
+
+                
+                <div class="d-flex justify-content-center normal-text"><label class="form-label" for="checkout-date">Check-out Date:</label></div>
+                <div class="d-flex justify-content-center"><input type="date" id="checkOutDate" name="checkout-date"></div><br><br>
+                
+                <!--Button-->
+                <div class="d-flex justify-content-center"><button id="bookNowBtn" type="submit" class="btn">Book Now</button></div></div><br><br>
+            </form>
             </div>
-            </div>
-            <br>
-
-            <!--Calendar selection-->
-            <div class="d-flex justify-content-center normal-text"><label class="form-label" for="checkin-date">Check-in Date:</label></div>
-            <div class="d-flex justify-content-center"><input type="date" id="checkInDate" name="checkin-date"></div><br>
-
-            
-            <div class="d-flex justify-content-center normal-text"><label class="form-label" for="checkout-date">Check-out Date:</label></div>
-            <div class="d-flex justify-content-center"><input type="date" id="checkOutDate" name="checkout-date"></div><br><br>
-            
-            <!--Button-->
-            <div class="d-flex justify-content-center"><button id="bookNowBtn" type="submit" class="btn btn-dark">Book Now</button></div></div><br><br>
-        </form>
+        </div>
+        </div>
     </div>
-
-
-    <!--READ / Show all reservations-->
-    <!--Do list rendering here. All reservations will be appended here-->
-    
+    </div>
+   
+    <div class="beige-div-bg">
     <div id="showReservations" class="container show-reservation-div mt-1 p-5">
     <h1 class="text-center calistoga">Show All Reservations</h1>
     <ol id="reservationList" class="list-group">
@@ -93,7 +115,7 @@
     </ol>
     </div>
     <div class="d-flex justify-content-center align-item-center">
-    <button id="saveBtn" class="btn btn-success p-3 m-3 justify-content-center">Save</button>
+    <button id="saveBtn" class="btn p-3 m-3 justify-content-center">Save</button>
     </div>
 
     </div>
@@ -101,7 +123,7 @@
     <div id="accordionContainer">
 
     </div>
-
+    </div>
 
     <!--axios-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js" integrity="sha512-JSCFHhKDilTRRXe9ak/FJ28dcpOJxzQaCd3Xg8MyF6XFjODhy/YMCM8HW0TFDckNHWUewW+kfvhin43hKtJxAw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
