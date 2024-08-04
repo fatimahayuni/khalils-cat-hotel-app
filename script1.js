@@ -39,10 +39,14 @@ document.addEventListener("DOMContentLoaded", function() {
             const editButton = event.target.closest('.edit-btn');
             const deleteButton = event.target.closest('.delete-btn');
 
-            // Check if the clicked element has the 'edit-btn' class
             if (editButton) {
                 console.log("Edit button clicked.");
                 console.log("Closest edit button:", editButton);
+            }
+
+            // Check if the clicked element has the 'edit-btn' class
+            if (event.target.closest('.edit-btn')) {
+                console.log("Edit button clicked.");
     
                 // get the taskId embedded in the button
                 const reservationId = parseInt(event.target.closest('.edit-btn').dataset.reservationId);

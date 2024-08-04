@@ -1,10 +1,24 @@
+.calistoga {
+    font-family: "Calistoga", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+.normal-text {
+  font-family: "Source Sans 3", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: large;
+}
+
 .booking-form-div {
     background-color: bisque;
     border-radius: 10px;
     margin-bottom: 25px;
     margin-top: 25px;
     padding: 10px;
-    width: 80%;
+    width: 60%;
     
 }
 
